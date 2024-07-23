@@ -1,1 +1,1 @@
-# stairwell-x509-jsons
+# This repo has all the sample jsons required for SpinCLI
