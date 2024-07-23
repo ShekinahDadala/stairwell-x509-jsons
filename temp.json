@@ -1,0 +1,41 @@
+{
+ "id": "e68d20b2-6a59-4e23-ac47-452bb529709c",
+ "lastModifiedBy": "support@opsmx.io",
+ "metadata": {
+  "description": "A pipeline template derived from pipeline \"wait\" in application \"sampleapp\"",
+  "name": "opsmx-test-template",
+  "owner": "support@opsmx.com",
+  "scopes": [
+   "global"
+  ]
+ },
+ "pipeline": {
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "support@opsmx.io",
+  "limitConcurrent": true,
+  "schema": "1",
+  "spelEvaluator": "v4",
+  "stages": [
+   {
+    "name": "Wait",
+    "refId": "1",
+    "requisiteStageRefIds": [],
+    "type": "wait",
+    "waitTime": "${templateVariables.timeToWait}"
+   }
+  ],
+  "triggers": [],
+  "updateTs": "1721031349000"
+ },
+ "protect": false,
+ "schema": "v2",
+ "updateTs": "1721032679000",
+ "variables": [
+    {
+         "type": "int",
+         "defaultValue": "",
+         "description": "Wait time",
+         "name": "timeToWait"
+    }
+ ]            
+}
