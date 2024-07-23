@@ -1,0 +1,10 @@
+ {
+  "accounts": "default",
+  "cloudProviders": "kubernetes",
+  "email": "support@opsmx.io",
+  "instancePort": 80,
+  "lastModifiedBy": "support@opsmx.io",
+  "name": "spincli-test",
+  "trafficGuards": [],
+  "user": "support@opsmx.io"
+ },
