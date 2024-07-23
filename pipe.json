@@ -1,0 +1,96 @@
+{
+  "name": "spincli-pipe",
+  "application": "spincli-test",	
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "support@opsmx.io",
+  "limitConcurrent": true,
+  "schema": "1",
+  "spelEvaluator": "v4",
+  "stages": [
+    {
+      "name": "Wait",
+      "refId": "1",
+      "requisiteStageRefIds": [],
+      "type": "wait",
+      "waitTime": 30
+    },
+    {
+      "failPipeline": true,
+      "judgmentInputs": [
+        {
+          "value": "Yes"
+        },
+        {
+          "value": "No"
+        }
+      ],
+      "name": "Manual Judgment",
+      "notifications": [],
+      "refId": "2",
+      "requisiteStageRefIds": [
+        "1"
+      ],
+      "type": "manualJudgment"
+    },
+    {
+      "account": "k8s-account-name",
+      "cloudProvider": "kubernetes",
+      "manifests": [
+        {
+          "apiVersion": "apps/v1",
+          "kind": "Deployment",
+          "metadata": {
+            "name": "nginx-deployment"
+          },
+          "spec": {
+            "replicas": 1,
+            "selector": {
+              "matchLabels": {
+                "app": "nginx"
+              }
+            },
+            "template": {
+              "metadata": {
+                "labels": {
+                  "app": "nginx"
+                }
+              },
+              "spec": {
+                "containers": [
+                  {
+                    "image": "nginx:1.14.2",
+                    "name": "nginx",
+                    "ports": [
+                      {
+                        "containerPort": 80
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "moniker": {
+        "app": "spincli-test"
+      },
+      "name": "Deploy (Manifest)",
+      "namespaceOverride": "deploy-qa",
+      "refId": "3",
+      "requisiteStageRefIds": [
+        "2"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "text",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    }
+  ],
+}
